@@ -63,7 +63,8 @@ const Default = {
   boundary: 'scrollParent',
   reference: 'toggle',
   display: 'dynamic',
-  popperConfig: null
+  popperConfig: null,
+  shouldTakeFocus: true,
 }
 
 const DefaultType = {
@@ -73,6 +74,7 @@ const DefaultType = {
   reference: '(string|element)',
   display: 'string',
   popperConfig: '(null|object)'
+  shouldTakeFocus: 'boolean'
 }
 
 /**
@@ -119,8 +121,8 @@ class Dropdown {
 
     this.show(true)
   }
-
-  show(usePopper = false) {
+  
+  show(usePopper = false)
     if (this._element.disabled || $(this._element).hasClass(CLASS_NAME_DISABLED) || $(this._menu).hasClass(CLASS_NAME_SHOW)) {
       return
     }
@@ -176,7 +178,10 @@ class Dropdown {
       $(document.body).children().on('mouseover', null, $.noop)
     }
 
-    this._element.focus()
+    if(this._config.shouldTakeFocus) {
+      this._element.focus()
+    }
+    
     this._element.setAttribute('aria-expanded', true)
 
     $(this._menu).toggleClass(CLASS_NAME_SHOW)
