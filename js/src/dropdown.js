@@ -73,7 +73,7 @@ const DefaultType = {
   boundary: '(string|element)',
   reference: '(string|element)',
   display: 'string',
-  popperConfig: '(null|object)'
+  popperConfig: '(null|object)',
   shouldTakeFocus: 'boolean'
 }
 
@@ -122,7 +122,7 @@ class Dropdown {
     this.show(true)
   }
   
-  show(usePopper = false)
+  show(usePopper = false) {
     if (this._element.disabled || $(this._element).hasClass(CLASS_NAME_DISABLED) || $(this._menu).hasClass(CLASS_NAME_SHOW)) {
       return
     }
