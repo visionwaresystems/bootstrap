@@ -1,6 +1,6 @@
 /*!
   * Bootstrap dropdown.js v4.6.1 (https://getbootstrap.com/)
-  * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Copyright 2011-2023 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
@@ -104,7 +104,8 @@
     boundary: 'scrollParent',
     reference: 'toggle',
     display: 'dynamic',
-    popperConfig: null
+    popperConfig: null,
+    shouldTakeFocus: true
   };
   var DefaultType = {
     offset: '(number|string|function)',
@@ -112,7 +113,8 @@
     boundary: '(string|element)',
     reference: '(string|element)',
     display: 'string',
-    popperConfig: '(null|object)'
+    popperConfig: '(null|object)',
+    shouldTakeFocus: 'boolean'
   };
   /**
    * Class definition
@@ -208,7 +210,9 @@
         $__default["default"](document.body).children().on('mouseover', null, $__default["default"].noop);
       }
 
-      this._element.focus();
+      if (this._config.shouldTakeFocus) {
+        this._element.focus();
+      }
 
       this._element.setAttribute('aria-expanded', true);
 
